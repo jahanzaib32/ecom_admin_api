@@ -19,11 +19,37 @@ This API provides backend services for an e-commerce admin dashboard, allowing m
     *   Analyze revenue on daily, weekly, monthly, and annual bases.
     *   Compare revenue across different periods and/or categories.
 
+## API Endpoints Overview
+
+The API provides the following main groups of endpoints, all prefixed with `/api/v1`:
+
+*   **`/products`**:
+    *   `POST /` : Register a new product along with its initial inventory.
+    *   `GET /` : Retrieve a list of all products, with optional filtering by category or name.
+    *   `GET /{product_id}` : Retrieve details for a specific product.
+    *   `PUT /{product_id}` : Update details for an existing product.
+    *   `POST /categories/` : Create a new product category.
+    *   `GET /categories/` : Retrieve a list of all product categories.
+
+*   **`/inventory`**:
+    *   `GET /` : Retrieve the current inventory status for all products.
+    *   `GET /low-stock` : Get a list of products that are below their low stock threshold.
+    *   `GET /{product_id}` : Retrieve inventory details for a specific product.
+    *   `PUT /{product_id}` : Update the inventory level (quantity, low stock threshold) for a specific product.
+
+*   **`/sales`**:
+    *   `POST /` : Record a new sale, which also updates product inventory.
+    *   `GET /` : Retrieve a list of sales, filterable by date range, product, or category.
+    *   `GET /revenue/analysis` : Analyze revenue on a daily, weekly, monthly, or annual basis, with optional date range and category filters.
+    *   `POST /revenue/comparison` : Compare revenue totals between two different periods and/or categories.
+
+For detailed request/response schemas and parameters, please refer to the auto-generated API documentation available at `/docs` (e.g., `http://127.0.0.1:8000/api/v1/docs`) when the server is running.
+
 ## Tech Stack
 
-*   Python 3.8+
-*   FastAPI
-*   MySQL
+*   Programming Language & Framework: Python with FastAPI
+*   API Type: RESTful
+*   Database: MySQL
 *   Pydantic
 *   Uvicorn
 
